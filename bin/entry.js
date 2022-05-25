@@ -1,30 +1,30 @@
 #! /usr/bin/env node
 
-const { Command } = require('commander')
-
-const package = require('../package')
+const package = require('../package.json');
+const chalk = require('chalk');
+const figlet = require('figlet');
+const { Command } = require('commander');
 
 const program = new Command()
-const chalk = require('chalk')
-const Inquirer = require('inquirer')
-
-new Inquirer.prompt([
-  {
-    name: "chaoxing",
-    type: "checkbox",
-    message: '选择你需要的依赖:',
-    choices: [
-      { name: 'TypeScript' },
-      { name: 'Eslint' }
-    ]
-  }
-]).then(res => {
-  console.log(res);
-})
 
 program
-  .name("chaoxing-cli")
-  .version(package.version, '-v, --version', 'display version for chaoxing-cli')
+  .version(`chaoxing-cli ${package.version}`, '-v, --version', 'display version for chaoxing-cli')
   .usage('<command> [options]')
 
-program.parse(process.argv)
+program
+  .option('-y, --yes', 'run default action')
+  .option('-f, --force', 'force all the question')
+
+program
+  .command('create <project-name>')
+  .description('create a new project')
+  .option("-f, --force", "overwrite target directory if it exists")
+  .action(function(projectName, options) {
+    console.log(projectName, options);
+  })
+
+try {
+  program.parse(process.argv)
+} catch (e) {
+  console.log(e)
+}
