@@ -1,0 +1,23 @@
+{
+  "name": "chaoxing-cli",
+  "version": "1.0.0",
+  "description": "chaoxing frontend cli",
+  "main": "entry.js",
+  "bin": {
+    "chaoxing": "bin/entry.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chaoxing",
+    "cli"
+  ],
+  "author": "ZSL",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "commander": "^9.2.0",
+    "inquirer": "^8.2.4"
+  }
+}
